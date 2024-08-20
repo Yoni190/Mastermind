@@ -14,7 +14,7 @@ class Game
   def greet_player
     puts "\t\s\s-----------------------------\n
           |  Welcome to Mastermind!   |\n
-          -----------------------------"
+          -----------------------------\n\n"
   end
 
   def prompt_player
