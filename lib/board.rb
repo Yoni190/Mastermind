@@ -1,4 +1,5 @@
 require_relative 'guess'
+require_relative 'game'
 require 'colorize'
 
 class Board
@@ -21,7 +22,7 @@ class Board
 
   def add_player_color(array)
     array.each{|color| board.sub!("o", "O".colorize(color.to_sym))}
-    puts board
+    Game.new.clear_screen
   end
 
 end

@@ -23,4 +23,8 @@ class Game
     puts "Hello, player. Please guess 4 random colors(put spaces between them)"
     self.player_guess = gets.chomp.split
   end
+
+  def clear_screen
+    puts "\e[1;1H\e[2J"
+  end
 end
