@@ -4,9 +4,9 @@ class Board
   attr_accessor :board
 
   def initialize
-    board = ""
     12.times{
-      board += Guess.new
+      self.board.nil? ? self.board = Guess.new.choice : self.board += Guess.new.choice
     }
   end
 
+end
