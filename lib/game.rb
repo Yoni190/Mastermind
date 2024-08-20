@@ -9,6 +9,8 @@ class Game
     puts game_board.board
 
     prompt_player
+
+    game_board.add_player_color(player_guess)
   end
 
   def greet_player

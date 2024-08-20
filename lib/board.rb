@@ -1,4 +1,5 @@
 require_relative 'guess'
+require 'colorize'
 
 class Board
   attr_accessor :board
@@ -16,6 +17,11 @@ class Board
     else
       self.board += Guess.new.choice
     end
+  end
+
+  def add_player_color(array)
+    array.each{|color| board.sub!("o", "O".colorize(color.to_sym))}
+    puts board
   end
 
 end
