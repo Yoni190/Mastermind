@@ -3,4 +3,6 @@ class Guess
   def initialize
     self.choice = "| o o o o | - - - - |\n"
   end
+
+
 end
