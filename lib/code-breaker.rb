@@ -1,4 +1,4 @@
-class Player
+class CodeBreaker
   attr_accessor :score
 
   def initialize

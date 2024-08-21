@@ -1,4 +1,4 @@
-class Computer
+class CodeMaker
   attr_accessor :random
   @@colors = ["red", "blue", "green", "yellow", "purple", "brown"]
 
