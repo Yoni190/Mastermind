@@ -4,18 +4,18 @@ require_relative 'code-breaker'
 
 class Game
   attr_accessor :game_board, :player_guess, :cm, :cb
+  @@cb = CodeBreaker.new
 
   def initialize
     self.game_board = Board.new
     self.cm = CodeMaker.new
-    self.cb = CodeBreaker.new
 
     12.times do 
       play_round(game_board)
       if win?
         puts game_board.board
         puts "Congrats. You broke the code!"
-        cm.score += 1
+        @@cb.increment_score
         break
       else
         game_board.check_guess(player_guess, cm.random)
@@ -30,6 +30,7 @@ class Game
 
   def play_round(game_board)
     greet_player
+    display_score
     puts game_board.board
     prompt_player
     game_board.add_player_color(player_guess)
@@ -42,6 +43,10 @@ class Game
           | \tYou can choose any of the following colors: \t|\n
           | \t\s\sred, blue, green, yellow, magenta, cyan \s\s\t|\n
           -------------------------------------------------------\n\n"
+  end
+
+  def display_score
+    puts "Codes broken: #{@@cb.score}\n"
   end
 
   def prompt_player
