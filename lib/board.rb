@@ -22,7 +22,8 @@ class Board
 
   def add_player_color(array)
     array.each{|color| board.sub!("o", "O".colorize(color.to_sym))}
-    Game.new.clear_screen
   end
+
+ 
 
 end

@@ -4,13 +4,18 @@ class Game
   attr_accessor :game_board, :player_guess
 
   def initialize
-    greet_player
     self.game_board = Board.new
+
+    12.times{play_round(game_board)}
+    
+  end
+
+  def play_round(game_board)
+    greet_player
     puts game_board.board
-
     prompt_player
-
     game_board.add_player_color(player_guess)
+    clear_screen
   end
 
   def greet_player
