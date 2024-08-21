@@ -1,12 +1,20 @@
 require_relative 'board'
+require_relative 'code-maker'
 
 class Game
-  attr_accessor :game_board, :player_guess
+  attr_accessor :game_board, :player_guess, :cm
 
   def initialize
     self.game_board = Board.new
+    self.cm = CodeMaker.new
 
-    12.times{play_round(game_board)}
+    12.times do 
+      play_round(game_board)
+      if win?
+        puts "Congrats. You broke the code!"
+        break
+      end
+    end
     
   end
 
@@ -33,5 +41,9 @@ class Game
 
   def clear_screen
     puts "\e[1;1H\e[2J"
+  end
+
+  def win?
+    player_guess == cm.random ? true : false
   end
 end
