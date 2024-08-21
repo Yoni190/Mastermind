@@ -19,9 +19,11 @@ class Game
   end
 
   def greet_player
-    puts "\t\s\s-----------------------------\n
-          |  Welcome to Mastermind!   |\n
-          -----------------------------\n\n"
+    puts "\t\s\s-------------------------------------------------------\n
+          | \t\t Welcome to Mastermind!   \t\t|\n
+          | \tYou can choose any of the following colors: \t|\n
+          | \t\s\sred, blue, green, yellow, magenta, cyan \s\s\t|\n
+          -------------------------------------------------------\n\n"
   end
 
   def prompt_player

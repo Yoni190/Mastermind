@@ -1,6 +1,6 @@
 class CodeMaker
   attr_accessor :random
-  @@colors = ["red", "blue", "green", "yellow", "purple", "brown"]
+  @@colors = ["red", "blue", "green", "yellow", "magenta", "cyan"]
 
   def initialize
     choose_four_colors(self.random)
