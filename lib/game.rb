@@ -11,9 +11,13 @@ class Game
     12.times do 
       play_round(game_board)
       if win?
+        puts game_board.board
         puts "Congrats. You broke the code!"
         break
+      else
+        game_board.check_guess(player_guess, cm.random)
       end
+      
     end
     
   end
@@ -46,4 +50,6 @@ class Game
   def win?
     player_guess == cm.random ? true : false
   end
+
+  
 end

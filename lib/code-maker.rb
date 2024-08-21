@@ -7,6 +7,6 @@ class CodeMaker
   end
 
   def choose_four_colors(random)
-    random = @@colors.sample(4)
+    self.random = @@colors.sample(4)
   end
 end
