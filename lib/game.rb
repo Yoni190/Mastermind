@@ -1,23 +1,29 @@
 require_relative 'board'
 require_relative 'code-maker'
+require_relative 'code-breaker'
 
 class Game
-  attr_accessor :game_board, :player_guess, :cm
+  attr_accessor :game_board, :player_guess, :cm, :cb
 
   def initialize
     self.game_board = Board.new
     self.cm = CodeMaker.new
+    self.cb = CodeBreaker.new
 
     12.times do 
       play_round(game_board)
       if win?
         puts game_board.board
         puts "Congrats. You broke the code!"
+        cm.score += 1
         break
       else
         game_board.check_guess(player_guess, cm.random)
       end
-      
+    end
+
+    if continue?
+      Game.new
     end
     
   end
@@ -49,6 +55,11 @@ class Game
 
   def win?
     player_guess == cm.random ? true : false
+  end
+
+  def continue?
+    puts "Continue?[Y/N]"
+    gets.chomp == "Y" ? true : false
   end
 
   
