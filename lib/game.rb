@@ -18,7 +18,7 @@ class Game
         @@cb.increment_score
         break
       else
-        game_board.check_guess(player_guess, cm.random)
+        game_board.check_guess(@@cb.code_breaker_guess, cm.random)
       end
     end
 
@@ -33,7 +33,8 @@ class Game
     display_score
     puts game_board.board
     prompt_player
-    game_board.add_player_color(player_guess)
+    @@cb.make_a_guess
+    game_board.add_player_color(@@cb.code_breaker_guess)
     clear_screen
   end
 
@@ -51,7 +52,6 @@ class Game
 
   def prompt_player
     puts "Hello, player. Please guess 4 random colors(put spaces between them)"
-    self.player_guess = gets.chomp.split
   end
 
   def clear_screen
@@ -59,7 +59,7 @@ class Game
   end
 
   def win?
-    player_guess == cm.random ? true : false
+    @@cb.code_breaker_guess == cm.random ? true : false
   end
 
   def continue?
