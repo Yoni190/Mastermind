@@ -1,3 +1,4 @@
+# Class for code maker player
 class CodeMaker
   attr_accessor :chosen_colors, :player_mode
 

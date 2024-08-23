@@ -2,6 +2,7 @@ require_relative "guess"
 require_relative "game"
 require "colorize"
 
+# Class for displaying and updating the board
 class Board
   attr_accessor :board, :black, :white, :correctly_guessed
 
@@ -30,17 +31,7 @@ class Board
     i = 0
     self.correctly_guessed = code_breaker.map(&:clone)
     while i < code_maker.length
-      if code_maker.include?(code_breaker[i]) && code_maker[i] == code_breaker[i]
-        board.sub!("`", "O".colorize(:black))
-        self.black += 1
-        correctly_guessed[i] = code_breaker[i]
-      elsif code_maker.include?(code_breaker[i])
-        board.sub!("`", "O")
-        self.white += 1
-        correctly_guessed.delete_at(i)
-      elsif !code_maker.include?(code_breaker[i])
-        correctly_guessed.delete_at(i)
-      end
+      check_black_and_white(code_breaker, code_maker, i)
       i += 1
     end
     j = 4
@@ -51,5 +42,19 @@ class Board
 
     self.black = 0
     self.white = 0
+  end
+
+  def check_black_and_white(code_breaker, code_maker, index)
+    if code_maker.include?(code_breaker[index]) && code_maker[index] == code_breaker[index]
+      board.sub!("`", "O".colorize(:black))
+      self.black += 1
+      correctly_guessed[index] = code_breaker[index]
+    elsif code_maker.include?(code_breaker[index])
+      board.sub!("`", "O")
+      self.white += 1
+      correctly_guessed.delete_at(index)
+    else
+      correctly_guessed.delete_at(index)
+    end
   end
 end

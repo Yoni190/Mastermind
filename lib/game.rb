@@ -2,6 +2,7 @@ require_relative "board"
 require_relative "code_maker"
 require_relative "code_breaker"
 
+# Class that deals with the gameplay
 class Game
   attr_accessor :game_board, :player_guess, :cm, :cb
 
@@ -27,7 +28,6 @@ class Game
 
   def cb_mode
     12.times do
-      puts cm.chosen_colors
       play_round(game_board)
       if win?
         puts game_board.board, "Congrats. You broke the code!"

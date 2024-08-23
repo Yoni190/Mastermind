@@ -1,3 +1,4 @@
+# Class for creating a single guess place
 class Guess
   attr_accessor :choice
 

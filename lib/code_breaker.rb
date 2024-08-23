@@ -1,3 +1,4 @@
+# Class for the code breaker player
 class CodeBreaker
   attr_accessor :score, :code_breaker_guess, :player_mode
 
