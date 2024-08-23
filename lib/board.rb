@@ -28,7 +28,7 @@ class Board
 
   def check_guess(code_breaker, code_maker)
     i = 0
-    self.correctly_guessed = code_breaker
+    self.correctly_guessed = code_breaker.map(&:clone)
     while i < code_maker.length
       if code_maker.include?(code_breaker[i]) && code_maker[i] == code_breaker[i]
         board.sub!("`", "O".colorize(:black))
