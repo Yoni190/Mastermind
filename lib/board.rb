@@ -1,14 +1,14 @@
-require_relative 'guess'
-require_relative 'game'
-require 'colorize'
+require_relative "guess"
+require_relative "game"
+require "colorize"
 
 class Board
   attr_accessor :board, :black, :white, :correctly_guessed
 
   def initialize
-    12.times{
+    12.times do
       create_board
-    }
+    end
     self.board += "---------------------\n"
     self.black = 0
     self.white = 0
@@ -23,7 +23,7 @@ class Board
   end
 
   def add_color(array)
-    array.each{|color| board.sub!("o", "O".colorize(color.to_sym))}
+    array.each { |color| board.sub!("o", "O".colorize(color.to_sym)) }
   end
 
   def check_guess(code_breaker, code_maker)
@@ -33,7 +33,7 @@ class Board
       if code_maker.include?(code_breaker[i]) && code_maker[i] == code_breaker[i]
         board.sub!("`", "O".colorize(:black))
         self.black += 1
-        self.correctly_guessed[i] = code_breaker[i]
+        correctly_guessed[i] = code_breaker[i]
       elsif code_maker.include?(code_breaker[i])
         board.sub!("`", "O")
         self.white += 1
@@ -52,6 +52,4 @@ class Board
     self.black = 0
     self.white = 0
   end
-
-
 end

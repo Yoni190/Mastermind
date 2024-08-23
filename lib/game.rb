@@ -1,56 +1,59 @@
-require_relative 'board'
-require_relative 'code-maker'
-require_relative 'code-breaker'
+require_relative "board"
+require_relative "code_maker"
+require_relative "code_breaker"
 
 class Game
   attr_accessor :game_board, :player_guess, :cm, :cb
+
   @@cb = CodeBreaker.new
 
   def initialize
     self.game_board = Board.new
     greet_player
     ask_mode
-    
 
     if @@cb.player_mode == "cb"
-      12.times do 
-        play_round(game_board)
-        if win?
-          puts game_board.board
-          puts "Congrats. You broke the code!"
-          @@cb.increment_score
-          break
-        else
-          game_board.check_guess(@@cb.code_breaker_guess, cm.chosen_colors)
-        end
-      end
+      cb_mode
 
     elsif @@cb.player_mode == "cm"
-      ask_code_maker
-      cm.player_choose_colors
-      12.times do
-        @@cb.break_the_code
-        game_board.add_color(@@cb.code_breaker_guess)
-        if win?
-          puts game_board.board
-          puts "The code has been broken. You failed your country"
-          break
-        else
-          game_board.check_guess(@@cb.code_breaker_guess, cm.chosen_colors)
-          if game_board.correctly_guessed != nil
-            @@cb.code_breaker_guess = game_board.correctly_guessed
-          end
-        end
+      cm_mode
+    end
+    puts game_board.board unless win?
+
+    return unless continue?
+
+    Game.new
+  end
+
+  def cb_mode
+    12.times do
+      puts cm.chosen_colors
+      play_round(game_board)
+      if win?
+        puts game_board.board, "Congrats. You broke the code!"
+        @@cb.increment_score
+        break
+      else
+        game_board.check_guess(@@cb.code_breaker_guess, cm.chosen_colors)
       end
     end
-    if !win?
-      puts game_board.board
-    end
+  end
 
-    if continue?
-      Game.new
+  def cm_mode
+    ask_code_maker
+    cm.player_choose_colors
+    12.times do
+      @@cb.break_the_code
+      game_board.add_color(@@cb.code_breaker_guess)
+      if win?
+        puts game_board.board
+        puts "The code has been broken. You failed your country"
+        break
+      else
+        game_board.check_guess(@@cb.code_breaker_guess, cm.chosen_colors)
+        @@cb.code_breaker_guess = game_board.correctly_guessed unless game_board.correctly_guessed.nil?
+      end
     end
-    
   end
 
   def ask_code_maker
@@ -95,13 +98,11 @@ class Game
   end
 
   def win?
-    @@cb.code_breaker_guess == cm.chosen_colors ? true : false
+    @@cb.code_breaker_guess == cm.chosen_colors
   end
 
   def continue?
     puts "Continue?[Y/N]"
-    gets.chomp == "Y" ? true : false
+    gets.chomp == "Y"
   end
-
-  
 end
