@@ -33,6 +33,7 @@ class Game
   def ask_mode
     puts "Do you want to be a Code breaker or Code Maker?(cb/cm)"
     @@cb.player_mode = gets.chomp
+    cm.player_mode = gets.chomp
   end
 
   def play_round(game_board)
