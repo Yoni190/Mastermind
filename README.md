@@ -31,7 +31,6 @@
 <br />
 <div align="center">
   <a href="https://github.com/Yoni190/Mastermind">
-    <img src="" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Mastermind</h3>
@@ -42,10 +41,7 @@
     <a href="https://github.com/Yoni190/Mastermind"><strong>Explore the docs »</strong></a>
     <br />
     <br />
- 
- 
     <a href="https://github.com/Yoni190/Mastermind/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
- 
     <a href="https://github.com/Yoni190/Mastermind/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
