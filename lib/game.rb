@@ -37,6 +37,9 @@ class Game
           break
         else
           game_board.check_guess(@@cb.code_breaker_guess, cm.chosen_colors)
+          if game_board.correctly_guessed != nil
+            @@cb.code_breaker_guess = game_board.correctly_guessed
+          end
         end
       end
     end

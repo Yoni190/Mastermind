@@ -18,6 +18,11 @@ class CodeBreaker
   end
 
   def break_the_code
-    self.code_breaker_guess = @@colors.sample(4)
+    if code_breaker_guess == nil || code_breaker_guess.length == 4
+      self.code_breaker_guess = @@colors.sample(4)
+    else
+      guees_length = code_breaker_guess.length
+      self.code_breaker_guess.push(@@colors.sample(4 - guees_length)).flatten!
+    end
   end
 end
