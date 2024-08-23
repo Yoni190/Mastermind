@@ -3,7 +3,7 @@ require_relative 'code-maker'
 require_relative 'code-breaker'
 
 class Game
-  attr_accessor :game_board, :player_guess, :cm, :cb, :mode
+  attr_accessor :game_board, :player_guess, :cm, :cb
   @@cb = CodeBreaker.new
 
   def initialize
@@ -32,7 +32,7 @@ class Game
 
   def ask_mode
     puts "Do you want to be a Code breaker or Code Maker?(cb/cm)"
-    self.mode = gets.chomp
+    @@cb.player_mode = gets.chomp
   end
 
   def play_round(game_board)
