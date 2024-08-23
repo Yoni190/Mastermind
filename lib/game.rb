@@ -28,8 +28,15 @@ class Game
       if continue?
         Game.new
       end
+    elsif @@cb.player_mode == "cm"
+      ask_code_maker
+      cm.player_choose_colors
     end
     
+  end
+
+  def ask_code_maker
+    puts "What color codes do you want the computer to break?"
   end
 
   def ask_mode
