@@ -20,7 +20,7 @@ class Game
         @@cb.increment_score
         break
       else
-        game_board.check_guess(@@cb.code_breaker_guess, cm.random)
+        game_board.check_guess(@@cb.code_breaker_guess, cm.chosen_colors)
       end
     end
 
@@ -66,7 +66,7 @@ class Game
   end
 
   def win?
-    @@cb.code_breaker_guess == cm.random ? true : false
+    @@cb.code_breaker_guess == cm.chosen_colors ? true : false
   end
 
   def continue?
