@@ -8,32 +8,35 @@ class Game
 
   def initialize
     self.game_board = Board.new
-    self.cm = CodeMaker.new
     greet_player
     ask_mode
+    
 
-    12.times do 
-      play_round(game_board)
-      if win?
-        puts game_board.board
-        puts "Congrats. You broke the code!"
-        @@cb.increment_score
-        break
-      else
-        game_board.check_guess(@@cb.code_breaker_guess, cm.chosen_colors)
+    if @@cb.player_mode == "cb"
+      12.times do 
+        play_round(game_board)
+        if win?
+          puts game_board.board
+          puts "Congrats. You broke the code!"
+          @@cb.increment_score
+          break
+        else
+          game_board.check_guess(@@cb.code_breaker_guess, cm.chosen_colors)
+        end
       end
-    end
 
-    if continue?
-      Game.new
+      if continue?
+        Game.new
+      end
     end
     
   end
 
   def ask_mode
     puts "Do you want to be a Code breaker or Code Maker?(cb/cm)"
-    @@cb.player_mode = gets.chomp
-    cm.player_mode = gets.chomp
+    mode = gets.chomp
+    @@cb.player_mode = mode
+    self.cm = CodeMaker.new(mode)
   end
 
   def play_round(game_board)

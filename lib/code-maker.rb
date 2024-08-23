@@ -2,7 +2,8 @@ class CodeMaker
   attr_accessor :chosen_colors, :player_mode
   @@colors = ["red", "blue", "green", "yellow", "magenta", "cyan"]
 
-  def initialize
+  def initialize(mode)
+    self.player_mode = mode
     if player_mode == "cb"
       choose_four_colors
     end
