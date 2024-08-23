@@ -77,7 +77,7 @@
 This ruby program allows the user to either try and break the computers randomized code as the Code Breaker or have the computer break his code as the Code Maker
 
 <h2>Screenshot</h2>
-<img src="" alt="Screenshot" width=700px>
+<img src="img/screenshot" alt="Screenshot" width=700px>
 
 
 
