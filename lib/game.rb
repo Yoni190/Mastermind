@@ -25,12 +25,27 @@ class Game
         end
       end
 
-      if continue?
-        Game.new
-      end
     elsif @@cb.player_mode == "cm"
       ask_code_maker
       cm.player_choose_colors
+      12.times do
+        @@cb.break_the_code
+        game_board.add_color(@@cb.code_breaker_guess)
+        if win?
+          puts game_board.board
+          puts "The code has been broken. You failed your country"
+          break
+        else
+          game_board.check_guess(@@cb.code_breaker_guess, cm.chosen_colors)
+        end
+      end
+    end
+    if !win?
+      puts game_board.board
+    end
+
+    if continue?
+      Game.new
     end
     
   end
@@ -52,7 +67,7 @@ class Game
     puts game_board.board
     prompt_player
     @@cb.make_a_guess
-    game_board.add_player_color(@@cb.code_breaker_guess)
+    game_board.add_color(@@cb.code_breaker_guess)
     clear_screen
   end
 

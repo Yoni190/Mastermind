@@ -1,5 +1,6 @@
 class CodeBreaker
   attr_accessor :score, :code_breaker_guess, :player_mode
+  @@colors = ["red", "blue", "green", "yellow", "magenta", "cyan"]
 
   def initialize
     self.score = 0
@@ -14,5 +15,9 @@ class CodeBreaker
     if(player_mode == "cb")
       self.code_breaker_guess = gets.chomp.split
     end
+  end
+
+  def break_the_code
+    self.code_breaker_guess = @@colors.sample(4)
   end
 end
